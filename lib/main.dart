@@ -95,6 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            const Text('hi, this is flutter ci cd '),
             const Text(
               'You have pushed the button this many times:',
             ),
