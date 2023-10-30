@@ -10,42 +10,78 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      # - name: Set up Flutter
-      #   run: flutter pub get
-
-      - name: Set up Flutter
-        uses: actions/setup-java@v3
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v3
         with:
-          distribution: temurin
-          java-version: '11'
-          # cache: 'maven'  
+          flutter-version: '3.3.8' # Specify the Flutter version you want to use
 
-      - name: Install Flutter dependencies
-        run: flutter pub get 
+      - name: Install dependencies
+        run: flutter pub get
 
-      - name: Analyze Flutter code
-        run: flutter analyze   
-
-      - name: Run Flutter tests
-        run: flutter test    
-
-      - name: Build Android app
+      - name: Build APK
         run: flutter build apk
 
-      - name: Build iOS app
-        run: flutter build ios
-
-      - name: Deploy Flutter app to Google Play
-        uses: actions/upload-artifact@v3
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
         with:
-          name: flutter-app.apk
-          path: build/app/outputs/flutter-apk/app-release.apk  
+          name: app
+          path: build/app/outputs/flutter-apk/app-release.apk
 
 
-      # - name: Upload artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: artifacts
-      #     path: build/
+
+
+
+# name: Flutter CI/CD
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v3
+
+#       # - name: Set up Flutter
+#       #   run: flutter pub get
+
+#       - name: Set up Flutter
+#         uses: actions/setup-java@v3
+#         with:
+#           distribution: temurin
+#           java-version: '11'
+#           # cache: 'maven'  
+
+#       - name: Install Flutter dependencies
+#         run: flutter pub get 
+
+#       - name: Analyze Flutter code
+#         run: flutter analyze   
+
+#       - name: Run Flutter tests
+#         run: flutter test    
+
+#       - name: Build Android app
+#         run: flutter build apk
+
+#       - name: Build iOS app
+#         run: flutter build ios
+
+#       - name: Deploy Flutter app to Google Play
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: flutter-app.apk
+#           path: build/app/outputs/flutter-apk/app-release.apk  
+
+
+#       # - name: Upload artifacts
+#       #   uses: actions/upload-artifact@v3
+#       #   with:
+#       #     name: artifacts
+#       #     path: build/
