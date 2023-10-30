@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           flutter-version: '3.3.8' # Specify the Flutter version you want to use
+          distribution: temurin
 
       - name: Install dependencies
         run: flutter pub get
