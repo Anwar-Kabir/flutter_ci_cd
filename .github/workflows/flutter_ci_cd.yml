@@ -18,6 +18,7 @@ jobs:
         with:
           flutter-version: '3.3.8' # Specify the Flutter version you want to use
           distribution: temurin
+          java-version: 11
 
       - name: Install dependencies
         run: flutter pub get
